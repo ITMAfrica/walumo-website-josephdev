@@ -107,7 +107,7 @@ export const WhatWeDo: React.FC = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
         </div>
 
-        <div className="container relative z-20 px-4 md:px-6">
+        <div className="container mx-auto px-16 relative z-20">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -165,7 +165,7 @@ export const WhatWeDo: React.FC = () => {
 
       {/* ── FOUR PILLARS ── */}
       <section className="py-24 md:py-32 relative">
-        <div className="container px-4 md:px-16">
+        <div className="container mx-auto px-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -231,7 +231,7 @@ export const WhatWeDo: React.FC = () => {
 
       {/* ── HOW WE WORK ── */}
       <section className="py-24 md:py-32 bg-slate-950 relative overflow-hidden">
-        <div className="container px-4 md:px-16">
+        <div className="container mx-auto px-16">
           <div className="flex flex-col lg:flex-row items-start gap-16 max-w-5xl mx-auto w-full">
 
             {/* Left: title + summary */}

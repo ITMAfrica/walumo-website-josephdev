@@ -25,7 +25,7 @@ interface HeroSectionProps {
  * @example
  * // Style Contact (centré, simple)
  * <HeroSection image={contactBg} height="70vh">
- *   <div className="container mx-auto px-6 relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full py-20">
+ *   <div className="container mx-auto px-16 relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full py-20">
  *     <motion.div ...>
  *       <h1>Contact our team</h1>
  *     </motion.div>
@@ -35,7 +35,7 @@ interface HeroSectionProps {
  * @example
  * // Style Home (full-screen, bottom-aligned, multi-colonnes)
  * <HeroSection image={heroBg} height="screen" minHeight={700}>
- *   <div className="absolute inset-0 z-20 flex flex-col justify-end pb-20 md:pb-32 container mx-auto px-6">
+ *   <div className="absolute inset-0 z-20 flex flex-col justify-end pb-20 md:pb-32 container mx-auto px-16">
  *     <div className="flex flex-col lg:flex-row ...">
  *       <motion.div ...>...</motion.div>
  *       <motion.div ...>...</motion.div>

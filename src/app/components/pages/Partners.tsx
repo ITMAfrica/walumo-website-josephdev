@@ -54,7 +54,7 @@ export const Partners: React.FC = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
         </div>
 
-        <div className="container relative z-20 px-4 md:px-6">
+        <div className="container mx-auto px-16 relative z-20">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -118,7 +118,7 @@ export const Partners: React.FC = () => {
 
       {/* ── VALUE PROPOSITION ── */}
       <section className="py-24 md:py-32 relative">
-        <div className="container px-4 md:px-16">
+        <div className="container mx-auto px-16">
           <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
             <div>
               <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight leading-tight mb-4">
@@ -190,7 +190,7 @@ export const Partners: React.FC = () => {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent" />
 
-        <div className="container mx-auto px-4 md:px-16 relative z-10">
+        <div className="container mx-auto px-16 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
