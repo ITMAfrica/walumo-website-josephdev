@@ -1,9 +1,14 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
-import { ShieldCheck, Users, Globe, Award, Lightbulb, History, Target, Sparkles, ArrowRight, Cpu, Network } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { motion } from 'motion/react';
+import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check';
+import Lightbulb from 'lucide-react/dist/esm/icons/lightbulb';
+import Target from 'lucide-react/dist/esm/icons/target';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
+import Cpu from 'lucide-react/dist/esm/icons/cpu';
+import Network from 'lucide-react/dist/esm/icons/network';
 import { Button } from '@/components/ui/button';
 import DigitalRain from '../ui/DigitalRain';
-import { SectionBadge } from '../ui/SectionBadge';
 
 const TechSeparator = () => (
     <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent my-0"></div>
@@ -37,10 +42,17 @@ const timelineData = [
 ];
 
 export const About: React.FC = () => {
-  const { scrollYProgress } = useScroll();
-  const yParallax = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
+    <>
+    <Helmet>
+      <title>Walumo — About Us | Architects of African Technology</title>
+      <meta name="description" content="Walumo is the technological backbone of ITM Holding. We transform complexity into opportunity, connecting local ingenuity to global standards." />
+      <meta property="og:title" content="Walumo — Architects of African Tech" />
+      <meta property="og:description" content="Born of ambition, forged by tech. A pan-African innovation powerhouse operating across 3 countries." />
+      <meta property="og:url" content="https://walumoafrica.com/about" />
+      <link rel="canonical" href="https://walumoafrica.com/about" />
+    </Helmet>
     <div className="bg-[#020617] min-h-screen font-sans text-slate-200 selection:bg-cyan-500/30">
       
       {/* 1. HERO SECTION */}
@@ -50,6 +62,7 @@ export const About: React.FC = () => {
               src="https://images.unsplash.com/photo-1684217875364-35ed8311d463?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920" 
               alt="Walumo Team Vision" 
               className="w-full h-full object-cover object-center opacity-60"
+              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/80 via-[#0F172A]/80 to-[#020617]"></div>
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
@@ -57,7 +70,7 @@ export const About: React.FC = () => {
 
          <DigitalRain />
 
-         <div className="absolute inset-0 z-20 flex flex-col justify-center container mx-auto px-6 pt-20">
+         <div className="absolute inset-0 z-20 flex flex-col justify-center container mx-auto px-4 md:px-16 pt-20">
             <motion.div 
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -66,14 +79,14 @@ export const About: React.FC = () => {
             >
                 
                 
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white tracking-tighter leading-[0.9] mb-8">
+                <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-8 leading-none">
                     Architects of <br/>
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
                         African Tech.
                     </span>
                 </h1>
                 
-                <p className="text-xl text-slate-400 font-light max-w-2xl leading-relaxed border-l-2 border-cyan-500/50 pl-6">
+                <p className="text-xl text-slate-300 font-light max-w-xl leading-relaxed border-l-2 border-cyan-500 pl-6">
                     Walumo is the technological backbone of ITM Holding. We transform complexity into opportunity, connecting local ingenuity to global standards.
                 </p>
             </motion.div>
@@ -95,7 +108,7 @@ export const About: React.FC = () => {
       <section className="py-32 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2"></div>
         
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-16 relative z-10">
             <div className="flex flex-col lg:flex-row gap-20 items-center">
                 
                 <div className="lg:w-1/2 relative group">
@@ -105,6 +118,7 @@ export const About: React.FC = () => {
                             src="https://images.unsplash.com/photo-1616038242814-a6eac7845d88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" 
                             alt="Nairobi Future City" 
                             className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                            loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-80"></div>
                         
@@ -146,7 +160,7 @@ export const About: React.FC = () => {
       {/* 3. TIMELINE */}
       <section className="py-24 bg-[#0B1120] relative overflow-hidden border-y border-white/5">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-16 relative z-10">
             <div className="text-center mb-24">
                 <h2 className="text-4xl font-bold text-white">Our Evolution</h2>
                 <div className="w-24 h-1 bg-cyan-500 mx-auto mt-6 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.6)]"></div>
@@ -180,7 +194,7 @@ export const About: React.FC = () => {
                                         viewport={{ once: true }}
                                         className="w-full max-w-lg relative group overflow-hidden rounded-2xl border border-white/10 shadow-2xl aspect-video"
                                     >
-                                        <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" />
+                                        <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" loading="lazy" />
                                         <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply group-hover:bg-transparent transition-colors"></div>
                                         <div className="absolute top-1/2 -right-14 w-14 h-px bg-cyan-500/40 hidden md:block"></div>
                                     </motion.div>
@@ -200,7 +214,7 @@ export const About: React.FC = () => {
                                         viewport={{ once: true }}
                                         className="w-full max-w-lg relative group overflow-hidden rounded-2xl border border-white/10 shadow-2xl aspect-video"
                                     >
-                                        <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" />
+                                        <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" loading="lazy" />
                                         <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply group-hover:bg-transparent transition-colors"></div>
                                         <div className="absolute top-1/2 -left-14 w-14 h-px bg-cyan-500/40 hidden md:block"></div>
                                     </motion.div>
@@ -229,7 +243,7 @@ export const About: React.FC = () => {
 
       {/* 4. VALUES */}
       <section className="py-32 relative">
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-4 md:px-16 relative z-10">
               <motion.div 
                 initial={{ opacity: 0 }} 
                 whileInView={{ opacity: 1 }}
@@ -272,7 +286,7 @@ export const About: React.FC = () => {
 
       {/* 5. TEAM / CULTURE */}
       <section className="py-24 bg-[#0F172A] border-t border-white/5 overflow-hidden">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-4 md:px-16">
               <div className="flex flex-col md:flex-row gap-16">
                   <div className="md:w-1/3">
                       <h2 className="text-4xl font-bold text-white mb-6">The Walumo Spirit</h2>
@@ -307,19 +321,19 @@ export const About: React.FC = () => {
                   <div className="md:w-2/3 grid grid-cols-2 gap-4">
                       <div className="space-y-4 mt-8">
                           <div className="bg-slate-800 rounded-2xl h-64 overflow-hidden relative group">
-                              <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=600" alt="Team meeting" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                              <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=600" alt="Team meeting" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" loading="lazy" />
                               <div className="absolute inset-0 bg-blue-900/40 mix-blend-multiply"></div>
                           </div>
                           <div className="bg-slate-800 rounded-2xl h-48 overflow-hidden relative group">
-                              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" alt="Collaboration" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" alt="Collaboration" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" loading="lazy" />
                           </div>
                       </div>
                       <div className="space-y-4">
                           <div className="bg-slate-800 rounded-2xl h-48 overflow-hidden relative group">
-                              <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600" alt="Coding" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                              <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600" alt="Coding" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" loading="lazy" />
                           </div>
                           <div className="bg-slate-800 rounded-2xl h-64 overflow-hidden relative group">
-                              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=600" alt="Office Life" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+                              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=600" alt="Office Life" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" loading="lazy" />
                               <div className="absolute inset-0 bg-cyan-900/40 mix-blend-multiply"></div>
                           </div>
                       </div>
@@ -329,5 +343,6 @@ export const About: React.FC = () => {
       </section>
 
     </div>
+    </>
   );
 };

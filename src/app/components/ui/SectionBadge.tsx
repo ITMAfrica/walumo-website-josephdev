@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 interface SectionBadgeProps {
   children: React.ReactNode;
@@ -9,9 +9,9 @@ interface SectionBadgeProps {
 
 /**
  * Reusable pill badge for section labels.
- * variant="dark"  → cyan-on-dark   (dark page heroes)
- * variant="light" → cyan-on-white  (light page sections)
- * variant="blue"  → blue-on-white  (light alt sections)
+ * variant="dark"  â†’ cyan-on-dark   (dark page heroes)
+ * variant="light" â†’ cyan-on-white  (light page sections)
+ * variant="blue"  â†’ blue-on-white  (light alt sections)
  */
 export const SectionBadge: React.FC<SectionBadgeProps> = ({
   children,

@@ -1,58 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router';
 import { Layout } from './components/layout/Layout';
-import { Home } from './components/pages/Home';
-import { About } from './components/pages/About';
-import { WhatWeDo } from './components/pages/WhatWeDo';
-import { Partners } from './components/pages/Partners';
-import { Contact } from './components/pages/Contact';
-import { Connect } from './components/pages/Connect';
 
-// Simple custom hook for hash navigation if we want to persist slightly
-const useHashLocation = () => {
-  const [loc, setLoc] = useState('home');
+const Home = React.lazy(() => import('./components/pages/Home').then(m => ({ default: m.Home })));
+const About = React.lazy(() => import('./components/pages/About').then(m => ({ default: m.About })));
+const WhatWeDo = React.lazy(() => import('./components/pages/WhatWeDo').then(m => ({ default: m.WhatWeDo })));
+const Partners = React.lazy(() => import('./components/pages/Partners').then(m => ({ default: m.Partners })));
+const Contact = React.lazy(() => import('./components/pages/Contact').then(m => ({ default: m.Contact })));
+const Connect = React.lazy(() => import('./components/pages/Connect').then(m => ({ default: m.Connect })));
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      setLoc(hash || 'home');
-    };
+const PageFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-slate-950">
+    <div className="w-8 h-8 border-2 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
+  </div>
+);
 
-    window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // init
-
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  const navigate = (page: string) => {
-    window.location.hash = page;
-  };
-
-  return { page: loc, navigate };
-};
-
-export default function App() {
-  const { page, navigate } = useHashLocation();
-
-  const renderPage = () => {
-    switch (page) {
-      case 'home': return <Home onNavigate={navigate} />;
-      case 'connect': return <Connect onNavigate={navigate} />;
-      case 'about': return <About />;
-      case 'what-we-do': return <WhatWeDo onNavigate={navigate} />;
-      case 'partners': return <Partners onNavigate={navigate} />;
-      case 'contact': return <Contact />;
-      default: return <Home onNavigate={navigate} />;
-    }
-  };
-
-  // Reset scroll on page change
+function ScrollToTop() {
+  const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [page]);
+  }, [pathname]);
+  return null;
+}
 
+export default function App() {
   return (
-    <Layout currentPage={page} onNavigate={navigate}>
-      {renderPage()}
+    <Layout>
+      <ScrollToTop />
+      <Suspense fallback={<PageFallback />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/solutions" element={<Connect />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/what-we-do" element={<WhatWeDo />} />
+          <Route path="/partners" element={<Partners />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Suspense>
     </Layout>
   );
 }

@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useMemo } from 'react';
+﻿import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { motion } from 'motion/react';
 
 // Stable pseudo-random values derived from index (no Math.random() in render)
-const DigitalColumn = ({ index }: { index: number }) => {
+const DigitalColumn = React.memo(({ index }: { index: number }) => {
   const chars = "010101101001110010111000101010011010110101";
 
   const { duration, delay, leftOffset, opacities } = useMemo(() => {
@@ -32,10 +32,11 @@ const DigitalColumn = ({ index }: { index: number }) => {
       ))}
     </motion.div>
   );
-};
+});
+DigitalColumn.displayName = 'DigitalColumn';
 
 interface DigitalRainProps {
-  /** Opacity as a number 0–100 (default: 20) */
+  /** Opacity as a number 0-100 (default: 20) */
   opacity?: number;
   className?: string;
 }
@@ -44,13 +45,20 @@ const DigitalRain = ({ opacity = 20, className = '' }: DigitalRainProps) => {
   const [columns, setColumns] = useState<number[]>([]);
 
   useEffect(() => {
+    let rafId: number;
     const update = () => {
-      const colCount = Math.floor(window.innerWidth / 40);
-      setColumns(Array.from({ length: colCount }, (_, i) => i));
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const colCount = Math.floor(window.innerWidth / 40);
+        setColumns(Array.from({ length: colCount }, (_, i) => i));
+      });
     };
     update();
     window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
+    return () => {
+      window.removeEventListener('resize', update);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (

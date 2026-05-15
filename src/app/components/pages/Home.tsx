@@ -1,43 +1,72 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
-import { ArrowRight, Zap, Users, Globe, PlayCircle, ArrowUpRight, Code2, BarChart3, Share2, Terminal, Cpu } from 'lucide-react';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
+import Users from 'lucide-react/dist/esm/icons/users';
+import PlayCircle from 'lucide-react/dist/esm/icons/play-circle';
+import Code2 from 'lucide-react/dist/esm/icons/code-2';
+import Terminal from 'lucide-react/dist/esm/icons/terminal';
 import { Button } from '@/components/ui/button';
-import DigitalRain from '../ui/DigitalRain';
-import heroBg from 'figma:asset/3528385c2e2e9a2d61d5e0a64051d7038f1259f1.png';
-import communityBg from 'figma:asset/f263ea4a0a3d5094f42bac7146cfde5bc52408ae.png';
+import { HeroSection } from '../ui/HeroSection';
+import heroBg from 'figma:asset/3528385c2e2e9a2d61d5e0a64051d7038f1259f1.webp';
+import communityBg from 'figma:asset/f263ea4a0a3d5094f42bac7146cfde5bc52408ae.webp';
 
 // Images
 const hackathonImage = 'https://images.unsplash.com/photo-1583225358814-4094d1a8aef2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYWNrYXRob24lMjBjb2RpbmclMjBldmVudCUyMGFmcmljYXxlbnwxfHx8fDE3NjQyNDA5NTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral';
 const communityImage = communityBg;
 
-interface HomeProps {
-  onNavigate: (page: string) => void;
-}
-
-export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+export const Home: React.FC = () => {
+  const navigate = useNavigate();
   return (
+    <>
+    <Helmet>
+      <title>Walumo — Code. Craft. Culture. | Pan-African Technology</title>
+      <meta name="description" content="Walumo propels your digital ambitions by merging technical expertise and strategic creativity. The tech division of ITM Holding, operating across Africa." />
+      <meta property="og:title" content="Walumo — Code. Craft. Culture." />
+      <meta property="og:description" content="Precision engineering at the service of human imagination. Pan-African technology company." />
+      <meta property="og:url" content="https://walumoafrica.com/" />
+      <link rel="canonical" href="https://walumoafrica.com/" />
+      <script type="application/ld+json">
+        {`{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Walumo",
+          "url": "https://walumoafrica.com",
+          "logo": "https://walumoafrica.com/favicon.png",
+          "description": "Pan-African technology company — the tech division of ITM Holding, connecting Africa's untapped potential to global innovation standards.",
+          "email": "info@walumoafrica.com",
+          "telephone": "+254-700-000000",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "7th Floor Highway Heights, Marcus Garvey Road, Kilimani",
+            "addressLocality": "Nairobi",
+            "addressCountry": "KE"
+          },
+          "parentOrganization": {
+            "@type": "Organization",
+            "name": "ITM Holding"
+          },
+          "sameAs": [
+            "https://linkedin.com/company/walumo",
+            "https://twitter.com/walumo",
+            "https://instagram.com/walumo"
+          ]
+        }`}
+      </script>
+    </Helmet>
     <div className="w-full overflow-hidden bg-[#FFFFFF]">
       
       {/* HERO SECTION */}
-      <section className="relative h-screen min-h-[700px] w-full overflow-hidden bg-[#0F172A]">
-        
-        <div className="absolute inset-0 z-0">
-           <img 
-             src={heroBg} 
-             alt="Walumo Team" 
-             className="w-full h-full object-cover object-center"
-           />
-           <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/60 to-[#0F172A]/30 mix-blend-multiply"></div>
-           <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
-           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_#0F172A_100%)] opacity-80"></div>
-           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-soft-light"></div>
-        </div>
-
-        <DigitalRain />
-
-        <div className="absolute inset-0 z-20 flex flex-col justify-end pb-20 md:pb-32 container mx-auto px-6">
+      <HeroSection
+        image={heroBg}
+        imageAlt="Walumo Team"
+        height="screen"
+        minHeight={700}
+      >
+        <div className="absolute inset-0 z-20 flex flex-col justify-center container mx-auto px-4 md:px-16 py-12 md:py-20">
             
-            <div className="flex flex-col lg:flex-row items-end justify-between gap-16 w-full mb-12 md:mb-24 relative z-10">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-16 w-full relative z-10">
                 
                 <div className="lg:w-7/12 relative">
                     <motion.div
@@ -48,7 +77,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                     >
                         
 
-                        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white tracking-tighter leading-[0.9] mb-8">
+                        <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-8 leading-none">
                             Code<span className="text-slate-600">.</span><br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
                                 Craft
@@ -58,7 +87,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
                         <div className="flex items-center gap-6 pt-6">
                             <div className="h-px w-20 bg-gradient-to-r from-cyan-500 to-transparent"></div>
-                            <p className="text-lg md:text-xl text-slate-400 font-light max-w-lg">
+                            <p className="text-lg md:text-xl text-slate-300 font-light max-w-lg">
                                 Precision engineering at the service of human imagination.
                             </p>
                         </div>
@@ -82,7 +111,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                             <div className="flex flex-col gap-3">
                                 <Button 
                                     className="w-full bg-white text-[#0F172A] hover:bg-cyan-50 h-14 rounded-xl text-base font-bold transition-all flex items-center justify-between px-10 group/btn"
-                                    onClick={() => onNavigate('contact')}
+                                    onClick={() => navigate('/contact')}
                                 >
                                     <span>Start a Project</span>
                                     <ArrowRight className="w-4 h-4 text-cyan-600 group-hover/btn:translate-x-1 transition-transform" />
@@ -90,7 +119,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                                 <Button 
                                     variant="ghost"
                                     className="w-full text-slate-400 hover:text-white hover:bg-white/5 h-12 rounded-lg text-sm font-medium transition-all justify-start px-6"
-                                    onClick={() => onNavigate('about')}
+                                    onClick={() => navigate('/about')}
                                 >
                                     <PlayCircle className="w-4 h-4 mr-2" />
                                     Discover Walumo
@@ -102,19 +131,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
             </div>
         </div>
-
-        <div className="absolute top-1/2 left-4 md:left-10 transform -translate-y-1/2 z-20 hidden md:flex">
-            <button className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:bg-white/10 hover:text-white transition-all">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-        </div>
-        <div className="absolute top-1/2 right-4 md:right-10 transform -translate-y-1/2 z-20 hidden md:flex">
-            <button className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:bg-white/10 hover:text-white transition-all">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-        </div>
-
-      </section>
+      </HeroSection>
 
       <section className="py-32 relative bg-slate-50 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -123,7 +140,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-100/50 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-16 relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-20">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -250,7 +267,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                             </p>
                             <div className="mt-8 flex gap-4">
                                 <Button 
-                                    onClick={() => onNavigate('about')}
+                                    onClick={() => navigate('/about')}
                                     className="bg-white text-[#1E3A8A] hover:bg-cyan-50 border-none font-bold h-12 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all"
                                 >
                                     Our Mission
@@ -288,8 +305,8 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </section>
 
       <section className="bg-white py-24 border-y border-gray-100">
-        <div className="container mx-auto px-6">
-            <div className="flex flex-col lg:flex-row items-center gap-16">
+        <div className="container mx-auto px-4 md:px-16">
+            <div className="flex flex-col lg:flex-row items-start gap-16">
                 <div className="w-full lg:w-1/2 relative">
                      <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-gray-900">
                         <div className="bg-[#1F293B] px-4 py-3 flex items-center gap-2 border-b border-white/10">
@@ -305,7 +322,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                         </div>
                         
                         <div className="relative group">
-                            <img src={hackathonImage} alt="Hackathon" className="w-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" />
+                            <img src={hackathonImage} alt="Hackathon" className="w-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                             <div className="absolute inset-0 bg-[#1E3A8A]/20 group-hover:bg-[#1E3A8A]/10 transition-colors"></div>
                             
                             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0f172a] to-transparent p-6 pt-20">
@@ -347,20 +364,20 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
       
 
-      <section className="relative py-40 overflow-hidden">
-         <div className="absolute inset-0">
-             <img src={communityImage} alt="Community" className="w-full h-full object-cover" />
+      <section className="relative py-24 overflow-hidden">
+         <div className="absolute inset-x-0 top-[10%] bottom-[10%]">
+             <img src={communityImage} alt="Community" className="w-full h-full object-cover" loading="lazy" />
              <div className="absolute inset-0 bg-[#1E3A8A]/90 mix-blend-multiply"></div>
          </div>
          
-         <div className="container mx-auto px-6 relative z-10 text-center">
+         <div className="container mx-auto px-4 md:px-16 relative z-10 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Join the movement</h2>
             <p className="text-xl text-white/90 max-w-2xl mx-auto mb-12 font-light">
                 Be part of Africa's growing community of innovators, builders, and dreamers shaping the digital future.
             </p>
             <Button 
                 className="bg-white text-[#1E3A8A] hover:bg-[#F9FAFB] px-10 h-14 rounded-full font-bold shadow-lg transition-all"
-                onClick={() => onNavigate('contact')}
+                onClick={() => navigate('/contact')}
             >
                 Join our community
             </Button>
@@ -368,5 +385,6 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </section>
 
     </div>
+    </>
   );
 };

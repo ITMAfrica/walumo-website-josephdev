@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ArrowRight, Globe, ChevronRight } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router';
+import Menu from 'lucide-react/dist/esm/icons/menu';
+import X from 'lucide-react/dist/esm/icons/x';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
+import Globe from 'lucide-react/dist/esm/icons/globe';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
 import logo from 'figma:asset/94c269edcbdb74938b680b232242789e3d1593b9.png';
 import itmLogo from 'figma:asset/f400fbfd35dd3d41718d690c56fecd7e001e64a0.png';
-import footerBg from 'figma:asset/6aa33663005a9d2f7e773eda9c02ed045d2cdd12.png';
+import footerBg from 'figma:asset/6aa33663005a9d2f7e773eda9c02ed045d2cdd12.webp';
 
 interface LayoutProps {
   children: React.ReactNode;
-  currentPage: string;
-  onNavigate: (page: string) => void;
 }
 
 const navItems = [
-  { id: 'home', label: 'Home' },
-  { id: 'connect', label: 'Solutions' },
-  { id: 'about', label: 'About' },
-  { id: 'what-we-do', label: 'What we do' },
-  { id: 'partners', label: 'Partners' },
-  { id: 'contact', label: 'Contact' },
+  { path: '/', label: 'Home' },
+  { path: '/solutions', label: 'Solutions' },
+  { path: '/about', label: 'About' },
+  { path: '/what-we-do', label: 'What we do' },
+  { path: '/partners', label: 'Partners' },
+  { path: '/contact', label: 'Contact' },
 ];
 
-export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigate }) => {
+const Layout: React.FC<LayoutProps> = React.memo(({ children }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -29,6 +34,11 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const isActive = (path: string) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] font-sans text-[#1F2937]">
@@ -42,21 +52,21 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
           <div className="flex items-center gap-5">
             <div 
               className="cursor-pointer flex items-center gap-2" 
-              onClick={() => onNavigate('home')}
+              onClick={() => navigate('/')}
             >
               <img src={logo} alt="WALUMO" className="h-10 md:h-12 w-auto" />
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center p-1 gap-1">
+          <nav className="hidden lg:flex items-center p-1 gap-1">
             {navItems.map((item) => (
               <button
-                key={item.id}
-                onClick={() => onNavigate(item.id)}
+                key={item.path}
+                onClick={() => navigate(item.path)}
                 className={`
                   relative px-4 py-1.5 rounded-full text-base font-medium transition-colors duration-300
-                  ${currentPage === item.id 
+                  ${isActive(item.path) 
                     ? 'text-white' 
                     : 'text-slate-500 hover:text-[#1E3A8A] hover:bg-blue-50'
                   }
@@ -64,7 +74,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
               >
                 <span className="relative z-10">{item.label}</span>
                 <AnimatePresence>
-                  {currentPage === item.id && (
+                  {isActive(item.path) && (
                     <motion.div 
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -90,7 +100,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden p-2 text-[#1F2937]"
+            className="lg:hidden p-2 text-[#1F2937]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -105,18 +115,18 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-200 overflow-hidden fixed top-[60px] left-0 right-0 z-40 shadow-xl"
+            className="lg:hidden bg-white border-b border-gray-200 overflow-hidden fixed top-[60px] left-0 right-0 z-40 shadow-xl"
           >
             <nav className="flex flex-col p-6 space-y-4">
               {navItems.map((item) => (
                 <button
-                  key={item.id}
+                  key={item.path}
                   onClick={() => {
-                    onNavigate(item.id);
+                    navigate(item.path);
                     setIsMobileMenuOpen(false);
                   }}
                   className={`text-left text-lg font-semibold py-2 border-b border-gray-50 ${
-                     currentPage === item.id ? 'text-[#1E3A8A]' : 'text-[#1F2937]'
+                     isActive(item.path) ? 'text-[#1E3A8A]' : 'text-[#1F2937]'
                   }`}
                 >
                   {item.label}
@@ -128,7 +138,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
               </div>
               <button 
                 onClick={() => {
-                    onNavigate('contact');
+                    navigate('/contact');
                     setIsMobileMenuOpen(false);
                   }}
                 className="bg-[#1E3A8A] text-white text-center font-bold h-14 rounded-xl mt-4 hover:bg-[#1E3A8A]/90 transition-colors"
@@ -144,7 +154,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
       <main className="flex-grow">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentPage}
+            key={location.pathname}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -159,7 +169,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
       <footer className="relative text-white pt-32 pb-16 overflow-hidden bg-[#0B1221]">
         {/* Background layer */}
         <div className="absolute inset-0 z-0">
-          <img src={footerBg} alt="" className="w-full h-full object-cover opacity-10" />
+          <img src={footerBg} alt="" className="w-full h-full object-cover opacity-10" loading="lazy" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#1E3A8A]/80 via-[#0B1221] to-[#0B1221]"></div>
           {/* Subtle dot grid */}
           <div className="absolute inset-0 opacity-[0.05]"
@@ -169,7 +179,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/60 to-transparent"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-16 relative z-10">
           {/* Newsletter / Pre-footer CTA */}
           <div className="mb-20 p-8 md:p-12 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
@@ -192,7 +202,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
             
             {/* Brand Column */}
             <div className="col-span-1 md:col-span-1 space-y-6">
-               <img src={logo} alt="WALUMO" className="h-20 w-auto brightness-0 invert" />
+               <img src={logo} alt="WALUMO" className="h-20 w-auto brightness-0 invert" loading="lazy" />
                <p className="text-white/60 leading-relaxed text-sm">
                  Connecting Africa's untapped technological potential to global innovation standards.
                </p>
@@ -210,8 +220,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
               <h4 className="font-bold text-base mb-6 text-cyan-400 tracking-wide">Explore</h4>
               <ul className="space-y-3 text-white/60 text-sm">
                 {navItems.slice(0, 3).map((item) => (
-                  <li key={item.id}>
-                    <button onClick={() => onNavigate(item.id)} className="hover:text-white transition-colors flex items-center gap-2 group">
+                  <li key={item.path}>
+                    <button onClick={() => navigate(item.path)} className="hover:text-white transition-colors flex items-center gap-2 group">
                       <ChevronRight size={14} className="text-blue-500 group-hover:translate-x-1 transition-transform" /> {item.label}
                     </button>
                   </li>
@@ -224,17 +234,17 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
               <h4 className="font-bold text-base mb-6 text-cyan-400 tracking-wide">Participate</h4>
               <ul className="space-y-3 text-white/60 text-sm">
                   <li>
-                    <button onClick={() => onNavigate('partners')} className="hover:text-white transition-colors flex items-center gap-2 group">
+                    <button onClick={() => navigate('/partners')} className="hover:text-white transition-colors flex items-center gap-2 group">
                       <ChevronRight size={14} className="text-blue-500 group-hover:translate-x-1 transition-transform" /> Become a Partner
                     </button>
                   </li>
                   <li>
-                    <button onClick={() => onNavigate('contact')} className="hover:text-white transition-colors flex items-center gap-2 group">
+                    <button onClick={() => navigate('/contact')} className="hover:text-white transition-colors flex items-center gap-2 group">
                       <ChevronRight size={14} className="text-blue-500 group-hover:translate-x-1 transition-transform" /> Join the community
                     </button>
                   </li>
                   <li>
-                    <button onClick={() => onNavigate('what-we-do')} className="hover:text-white transition-colors flex items-center gap-2 group">
+                    <button onClick={() => navigate('/what-we-do')} className="hover:text-white transition-colors flex items-center gap-2 group">
                       <ChevronRight size={14} className="text-blue-500 group-hover:translate-x-1 transition-transform" /> HackLab 2025
                     </button>
                   </li>
@@ -265,7 +275,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
               <p>© {new Date().getFullYear()} Walumo. An ITM Holding entity.</p>
               <div className="hidden md:flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-white/20"></span>
-                <img src={itmLogo} alt="ITM Holding" className="h-5 w-auto opacity-60 hover:opacity-100 transition-opacity" />
+                <img src={itmLogo} alt="ITM Holding" className="h-5 w-auto opacity-60 hover:opacity-100 transition-opacity" loading="lazy" />
               </div>
             </div>
             <div className="flex gap-6">
@@ -278,4 +288,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onNavigat
       </footer>
     </div>
   );
-};
+});
+Layout.displayName = 'Layout';
+
+export { Layout };

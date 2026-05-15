@@ -1,34 +1,36 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
-import { Mail, MapPin, ArrowRight } from 'lucide-react';
+import Mail from 'lucide-react/dist/esm/icons/mail';
+import MapPin from 'lucide-react/dist/esm/icons/map-pin';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import DigitalRain from '../ui/DigitalRain';
+import { HeroSection } from '../ui/HeroSection';
 
 export const Contact: React.FC = () => {
   return (
+    <>
+    <Helmet>
+      <title>Walumo — Contact Us | Start Your Digital Journey</title>
+      <meta name="description" content="Turn your entrepreneurial ambitions into reality with the Walumo innovation ecosystem. Contact our team in Nairobi today." />
+      <meta property="og:title" content="Walumo — Contact Our Team" />
+      <meta property="og:description" content="Turn your entrepreneurial ambitions into reality. Reach out to the Walumo team in Nairobi and start your digital transformation." />
+      <meta property="og:url" content="https://walumoafrica.com/contact" />
+      <link rel="canonical" href="https://walumoafrica.com/contact" />
+    </Helmet>
     <div className="bg-white min-h-screen">
       
       {/* Hero / Banner Section */}
-      <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-[#0F172A]">
-        
-        <div className="absolute inset-0 z-0">
-            <img 
-                src="https://images.unsplash.com/photo-1761795111868-4851b056cf63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwY29tbXVuaWNhdGlvbiUyMG5ldHdvcmt8ZW58MXx8fHwxNzY2OTk4ODQwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
-                alt="Technology Communication" 
-                className="w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/60 to-[#0F172A]/30 mix-blend-multiply"></div>
-            <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_#0F172A_100%)] opacity-80"></div>
-            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-soft-light"></div>
-        </div>
-
-        <DigitalRain />
-
-        <div className="container mx-auto px-6 relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full py-20">
+      <HeroSection
+        image="https://images.unsplash.com/photo-1761795111868-4851b056cf63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwY29tbXVuaWNhdGlvbiUyMG5ldHdvcmt8ZW58MXx8fHwxNzY2OTk4ODQwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+        imageAlt="Technology Communication"
+        height="70vh"
+        className="flex items-center"
+      >
+        <div className="container mx-auto px-4 md:px-16 relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full py-20">
           
           <div className="text-white max-w-2xl">
              <motion.div 
@@ -53,11 +55,10 @@ export const Contact: React.FC = () => {
           </div>
 
         </div>
-
-      </section>
+      </HeroSection>
 
       {/* Main Contact Section */}
-      <div className="container mx-auto px-6 py-24 relative z-20">
+      <div className="container mx-auto px-4 md:px-16 py-24 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
           
           <motion.div 
@@ -73,6 +74,7 @@ export const Contact: React.FC = () => {
                         src="https://images.unsplash.com/photo-1763926444233-003d397fe0f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMHRlY2hub2xvZ3klMjBwYXR0ZXJuJTIwYmx1ZSUyMGRhcmt8ZW58MXx8fHwxNzY1MjA5NjYzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
                         alt="Technology Pattern" 
                         className="w-full h-full object-cover opacity-10 mix-blend-overlay group-hover/card:scale-105 transition-transform duration-1000"
+                        loading="lazy"
                     />
                     
                     <div 
@@ -195,5 +197,6 @@ export const Contact: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };

@@ -1,20 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { Button } from '@/components/ui/button';
-import {
-  ArrowRight, Globe, Shield, Server, Database,
-  ChevronRight, Check, Users, Zap
-} from 'lucide-react';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
+import Globe from 'lucide-react/dist/esm/icons/globe';
+import Shield from 'lucide-react/dist/esm/icons/shield';
+import Server from 'lucide-react/dist/esm/icons/server';
+import Database from 'lucide-react/dist/esm/icons/database';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
+import Check from 'lucide-react/dist/esm/icons/check';
+import Users from 'lucide-react/dist/esm/icons/users';
+import Zap from 'lucide-react/dist/esm/icons/zap';
 import DigitalRain from '../ui/DigitalRain';
 import { GlassCard } from '../ui/GlassCard';
 
-interface PartnersProps {
-  onNavigate: (page: string) => void;
-}
-
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } },
 };
 
 const stagger = {
@@ -27,8 +30,18 @@ const partnerLogos = [
   'Quantuma', 'Synapse', 'Aether', 'Zenith',
 ];
 
-export const Partners: React.FC<PartnersProps> = ({ onNavigate }) => {
+export const Partners: React.FC = () => {
+  const navigate = useNavigate();
   return (
+    <>
+    <Helmet>
+      <title>Walumo — Partners | The Architecture of Your Expansion</title>
+      <meta name="description" content="We're building an innovation energy grid connecting Africa to the rest of the world. Join our ecosystem of corporate innovators and startup accelerators." />
+      <meta property="og:title" content="Walumo — The Architecture of Your Expansion" />
+      <meta property="og:description" content="Elastic infrastructure, data intelligence, and unified security. Partner with Walumo to scale your business across Africa." />
+      <meta property="og:url" content="https://walumoafrica.com/partners" />
+      <link rel="canonical" href="https://walumoafrica.com/partners" />
+    </Helmet>
     <div className="bg-slate-950 min-h-screen font-sans selection:bg-cyan-500/30">
 
       {/* ── HERO ── */}
@@ -50,7 +63,7 @@ export const Partners: React.FC<PartnersProps> = ({ onNavigate }) => {
           >
             <motion.h1
               variants={fadeIn}
-              className="text-5xl md:text-7xl font-semibold tracking-tight text-white mb-8 leading-[1.1]"
+              className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-8 leading-none"
             >
               The architecture of{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -73,7 +86,7 @@ export const Partners: React.FC<PartnersProps> = ({ onNavigate }) => {
               <Button
                 size="lg"
                 className="h-14 px-8 text-base bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white rounded-full shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300 border-0"
-                onClick={() => onNavigate('contact')}
+                onClick={() => navigate('/contact')}
               >
                 Initiate a connection
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -105,7 +118,7 @@ export const Partners: React.FC<PartnersProps> = ({ onNavigate }) => {
 
       {/* ── VALUE PROPOSITION ── */}
       <section className="py-24 md:py-32 relative">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-16">
           <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
             <div>
               <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight leading-tight mb-4">
@@ -177,7 +190,7 @@ export const Partners: React.FC<PartnersProps> = ({ onNavigate }) => {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent" />
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-16 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -203,6 +216,7 @@ export const Partners: React.FC<PartnersProps> = ({ onNavigate }) => {
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
                 alt="Corporate"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                loading="lazy"
               />
               <div className="absolute inset-0 z-20 p-10 md:p-14 flex flex-col justify-end bg-gradient-to-t from-slate-950 via-transparent to-transparent">
                 <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
@@ -233,6 +247,7 @@ export const Partners: React.FC<PartnersProps> = ({ onNavigate }) => {
                 src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
                 alt="Startup"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                loading="lazy"
               />
               <div className="absolute inset-0 z-20 p-10 md:p-14 flex flex-col justify-end bg-gradient-to-t from-slate-950 via-transparent to-transparent">
                 <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
@@ -270,5 +285,6 @@ export const Partners: React.FC<PartnersProps> = ({ onNavigate }) => {
       </section>
 
     </div>
+    </>
   );
 };

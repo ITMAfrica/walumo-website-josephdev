@@ -1,20 +1,39 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
-import { Wifi, Globe, Shield, Zap, Check, ArrowRight, Server, Activity } from 'lucide-react';
+import Wifi from 'lucide-react/dist/esm/icons/wifi';
+import Globe from 'lucide-react/dist/esm/icons/globe';
+import Shield from 'lucide-react/dist/esm/icons/shield';
+import Zap from 'lucide-react/dist/esm/icons/zap';
+import Check from 'lucide-react/dist/esm/icons/check';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right';
+import Server from 'lucide-react/dist/esm/icons/server';
+import Activity from 'lucide-react/dist/esm/icons/activity';
 import { Button } from '../ui/button';
 import DigitalRain from '../ui/DigitalRain';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } }
 };
 
 const stagger = {
   visible: { transition: { staggerChildren: 0.1 } }
 };
 
-export const Connect = ({ onNavigate }: { onNavigate: (page: string) => void }) => {
+export const Connect: React.FC = () => {
+  const navigate = useNavigate();
   return (
+    <>
+    <Helmet>
+      <title>Walumo — Solutions & Connectivity | African Tech Infrastructure</title>
+      <meta name="description" content="Connect your business with next-generation Deep Tech infrastructure. Reliable performance, military-grade security, and instant deployment across Africa." />
+      <meta property="og:title" content="Walumo — Solutions & Connectivity" />
+      <meta property="og:description" content="The internet without limits, wherever you are. Ultra-fast connection, deep tech security, and hybrid infrastructure." />
+      <meta property="og:url" content="https://walumoafrica.com/solutions" />
+      <link rel="canonical" href="https://walumoafrica.com/solutions" />
+    </Helmet>
     <div className="bg-slate-950 min-h-screen font-sans selection:bg-cyan-500/30">
       
       {/* HERO SECTION */}
@@ -39,7 +58,7 @@ export const Connect = ({ onNavigate }: { onNavigate: (page: string) => void }) 
 
             <motion.h1 
               variants={fadeIn}
-              className="text-5xl md:text-7xl font-semibold tracking-tight text-white mb-8 leading-[1.1]"
+              className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-8 leading-none"
             >
               The internet <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">without limits</span>, <br/> 
               wherever you are.
@@ -57,7 +76,7 @@ export const Connect = ({ onNavigate }: { onNavigate: (page: string) => void }) 
               <Button 
                 size="lg" 
                 className="h-14 px-8 text-base bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white rounded-full shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300 border-0"
-                onClick={() => onNavigate('contact')}
+                onClick={() => navigate('/contact')}
               >
                 Get Started Now
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -75,8 +94,8 @@ export const Connect = ({ onNavigate }: { onNavigate: (page: string) => void }) 
       </section>
 
       {/* AUDIT / FEATURES SECTION */}
-      <section className="py-24 md:py-32 relative">
-        <div className="container px-4 md:px-6">
+      <section className="py-24 md:py-32 relative bg-white">
+        <div className="container px-4 md:px-16">
           <motion.div 
             initial="hidden" 
             whileInView="visible" 
@@ -104,15 +123,15 @@ export const Connect = ({ onNavigate }: { onNavigate: (page: string) => void }) 
               <motion.div 
                 key={i} 
                 variants={fadeIn}
-                className="group relative p-8 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-cyan-500/30 transition-all duration-300 hover:bg-slate-800/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)] backdrop-blur-sm overflow-hidden"
+                className="group relative p-8 rounded-2xl bg-white border border-gray-200/50 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ring-1 ring-white/10 group-hover:ring-cyan-500/50">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ring-1 ring-gray-200 group-hover:ring-cyan-500/50">
                     <feature.icon className="h-6 w-6 text-cyan-400" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-                  <p className="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">{feature.title}</h3>
+                  <p className="text-slate-500 leading-relaxed group-hover:text-slate-700 transition-colors">
                     {feature.desc}
                   </p>
                 </div>
@@ -126,7 +145,7 @@ export const Connect = ({ onNavigate }: { onNavigate: (page: string) => void }) 
       <section className="py-24 bg-slate-950 relative overflow-hidden">
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
         
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 md:px-16">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 space-y-8">
               <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight leading-tight">
@@ -211,5 +230,6 @@ export const Connect = ({ onNavigate }: { onNavigate: (page: string) => void }) 
       
 
     </div>
+    </>
   );
 };
