@@ -30,7 +30,7 @@ export const Contact: React.FC = () => {
         height="70vh"
         className="flex items-center"
       >
-        <div className="container mx-auto px-4 md:px-16 relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full py-20">
+        <div className="container mx-auto px-16 relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full py-20">
           
           <div className="text-white max-w-2xl">
              <motion.div 
@@ -58,7 +58,7 @@ export const Contact: React.FC = () => {
       </HeroSection>
 
       {/* Main Contact Section */}
-      <div className="container mx-auto px-4 md:px-16 py-24 relative z-20">
+      <div className="container mx-auto px-16 py-24 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
           
           <motion.div 

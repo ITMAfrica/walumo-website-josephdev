@@ -64,7 +64,7 @@ export const Home: React.FC = () => {
         height="screen"
         minHeight={700}
       >
-        <div className="absolute inset-0 z-20 flex flex-col justify-center container mx-auto px-4 md:px-16 py-12 md:py-20">
+        <div className="absolute inset-0 z-20 flex flex-col justify-center container mx-auto px-16 py-12 md:py-20">
             
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-16 w-full relative z-10">
                 
@@ -140,7 +140,7 @@ export const Home: React.FC = () => {
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-100/50 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
         </div>
 
-        <div className="container mx-auto px-4 md:px-16 relative z-10">
+        <div className="container mx-auto px-16 relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-20">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -305,7 +305,7 @@ export const Home: React.FC = () => {
       </section>
 
       <section className="bg-white py-24 border-y border-gray-100">
-        <div className="container mx-auto px-4 md:px-16">
+        <div className="container mx-auto px-16">
             <div className="flex flex-col lg:flex-row items-start gap-16">
                 <div className="w-full lg:w-1/2 relative">
                      <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-gray-900">
@@ -370,7 +370,7 @@ export const Home: React.FC = () => {
              <div className="absolute inset-0 bg-[#1E3A8A]/90 mix-blend-multiply"></div>
          </div>
          
-         <div className="container mx-auto px-4 md:px-16 relative z-10 text-center">
+         <div className="container mx-auto px-16 relative z-10 text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Join the movement</h2>
             <p className="text-xl text-white/90 max-w-2xl mx-auto mb-12 font-light">
                 Be part of Africa's growing community of innovators, builders, and dreamers shaping the digital future.

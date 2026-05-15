@@ -47,7 +47,7 @@ const Layout: React.FC<LayoutProps> = React.memo(({ children }) => {
           scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm border-gray-100 py-3' : 'bg-white border-transparent py-5'
         }`}
       >
-        <div className="container mx-auto px-6 flex justify-between items-center">
+        <div className="container mx-auto px-16 flex justify-between items-center">
           {/* Logo Section */}
           <div className="flex items-center gap-5">
             <div 

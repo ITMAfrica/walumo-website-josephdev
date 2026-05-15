@@ -70,7 +70,7 @@ export const About: React.FC = () => {
 
          <DigitalRain />
 
-         <div className="absolute inset-0 z-20 flex flex-col justify-center container mx-auto px-4 md:px-16 pt-20">
+         <div className="absolute inset-0 z-20 flex flex-col justify-center container mx-auto px-16 pt-20">
             <motion.div 
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -108,7 +108,7 @@ export const About: React.FC = () => {
       <section className="py-32 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-900/10 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2"></div>
         
-        <div className="container mx-auto px-4 md:px-16 relative z-10">
+        <div className="container mx-auto px-16 relative z-10">
             <div className="flex flex-col lg:flex-row gap-20 items-center">
                 
                 <div className="lg:w-1/2 relative group">
@@ -160,7 +160,7 @@ export const About: React.FC = () => {
       {/* 3. TIMELINE */}
       <section className="py-24 bg-[#0B1120] relative overflow-hidden border-y border-white/5">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
-        <div className="container mx-auto px-4 md:px-16 relative z-10">
+        <div className="container mx-auto px-16 relative z-10">
             <div className="text-center mb-24">
                 <h2 className="text-4xl font-bold text-white">Our Evolution</h2>
                 <div className="w-24 h-1 bg-cyan-500 mx-auto mt-6 rounded-full shadow-[0_0_15px_rgba(6,182,212,0.6)]"></div>
@@ -243,7 +243,7 @@ export const About: React.FC = () => {
 
       {/* 4. VALUES */}
       <section className="py-32 relative">
-          <div className="container mx-auto px-4 md:px-16 relative z-10">
+          <div className="container mx-auto px-16 relative z-10">
               <motion.div 
                 initial={{ opacity: 0 }} 
                 whileInView={{ opacity: 1 }}
@@ -286,7 +286,7 @@ export const About: React.FC = () => {
 
       {/* 5. TEAM / CULTURE */}
       <section className="py-24 bg-[#0F172A] border-t border-white/5 overflow-hidden">
-          <div className="container mx-auto px-4 md:px-16">
+          <div className="container mx-auto px-16">
               <div className="flex flex-col md:flex-row gap-16">
                   <div className="md:w-1/3">
                       <h2 className="text-4xl font-bold text-white mb-6">The Walumo Spirit</h2>

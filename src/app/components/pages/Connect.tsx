@@ -45,7 +45,7 @@ export const Connect: React.FC = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
         </div>
 
-        <div className="container relative z-20 px-4 md:px-6">
+        <div className="container mx-auto px-16 relative z-20">
           <motion.div 
             initial="hidden"
             animate="visible"
@@ -95,7 +95,7 @@ export const Connect: React.FC = () => {
 
       {/* AUDIT / FEATURES SECTION */}
       <section className="py-24 md:py-32 relative bg-white">
-        <div className="container px-4 md:px-16">
+        <div className="container mx-auto px-16">
           <motion.div 
             initial="hidden" 
             whileInView="visible" 
@@ -123,15 +123,15 @@ export const Connect: React.FC = () => {
               <motion.div 
                 key={i} 
                 variants={fadeIn}
-                className="group relative p-8 rounded-2xl bg-white border border-gray-200/50 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] overflow-hidden"
+                className="group relative p-8 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-cyan-500/30 transition-all duration-300 hover:bg-slate-800/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)] backdrop-blur-sm overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ring-1 ring-gray-200 group-hover:ring-cyan-500/50">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 ring-1 ring-white/10 group-hover:ring-cyan-500/50">
                     <feature.icon className="h-6 w-6 text-cyan-400" />
                   </div>
-                  <h3 className="text-xl font-semibold text-slate-900 mb-3">{feature.title}</h3>
-                  <p className="text-slate-500 leading-relaxed group-hover:text-slate-700 transition-colors">
+                  <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                  <p className="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">
                     {feature.desc}
                   </p>
                 </div>
@@ -145,7 +145,7 @@ export const Connect: React.FC = () => {
       <section className="py-24 bg-slate-950 relative overflow-hidden">
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
         
-        <div className="container px-4 md:px-16">
+        <div className="container mx-auto px-16">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 space-y-8">
               <h2 className="text-3xl md:text-5xl font-semibold text-white tracking-tight leading-tight">
